@@ -1,0 +1,46 @@
+---
+const announcements = [
+  "Proximas fechas: 12 de mayo",
+  "Nuevo grupo: 15 de abril",
+  "Inscripciones abiertas",
+  "Curso intensivo de oratoria y comunicacion",
+];
+
+const loopItems = [...announcements, ...announcements, ...announcements];
+---
+
+<section class="overflow-hidden bg-[#151515] py-3 text-primary" aria-label="Anuncios">
+  <div class="announcement-track flex w-max items-center gap-10 whitespace-nowrap">
+    {
+      loopItems.map((item) => (
+        <div class="flex items-center gap-10 text-sm font-black uppercase tracking-[0.18em]">
+          <span>{item}</span>
+          <span aria-hidden="true" class="size-2 rounded-full bg-primary"></span>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .announcement-track {
+    animation: announcement-scroll 32s linear infinite;
+  }
+
+  @keyframes announcement-scroll {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-33.333%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .announcement-track {
+      animation: none;
+      transform: none;
+    }
+  }
+</style>
