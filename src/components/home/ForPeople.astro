@@ -1,0 +1,56 @@
+---
+import { Image } from "astro:assets";
+import banner from "@assets/imgs/banner.jpg";
+
+const bullets = [
+  "Perder el miedo a hablar en publico",
+  "Ordenar y expresar mejor sus ideas",
+  "Comunicar con presencia",
+  "Sostener conversaciones importantes",
+  "Decir lo que piensan y que realmente se entienda",
+];
+---
+
+<section class="bg-white py-16 lg:pb-28 lg:pt-20">
+  <div class="container mx-auto grid items-start gap-12 px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
+    <div class="max-w-xl">
+      <span class="text-xs font-black uppercase tracking-[0.35em] text-primary">Para quien es ECO</span>
+      <h2 class="mt-5 text-4xl font-black leading-tight sm:text-5xl">
+        ECO es para personas que quieren comunicar mejor.
+      </h2>
+      <p class="mt-6 text-lg leading-8 text-black/60">
+        Con mas claridad, mas seguridad y mas autenticidad.
+      </p>
+
+      <div class="relative mt-9 max-w-lg">
+        <div class="absolute -left-4 top-4 h-[calc(100%-0.75rem)] w-[105%] rounded-xl bg-black"></div>
+        <div class="absolute -right-1 top-5 h-[88%] w-[84%] rotate-[-4deg] rounded-sm bg-[#ded8ca]"></div>
+        <div class="relative rounded-br-2xl rounded-tr-2xl bg-[#f4f0e7] px-10 py-7 shadow-sm before:absolute before:-top-5 before:left-8 before:h-9 before:w-36 before:rounded-t-lg before:bg-black">
+          <ul class="space-y-4">
+          {
+            bullets.map((bullet) => (
+              <li class="flex gap-4 text-base leading-7 text-black/75">
+                <span class="mt-2.5 size-2.5 shrink-0 rounded-full bg-primary"></span>
+                <span>{bullet}</span>
+              </li>
+            ))
+          }
+          </ul>
+          <p class="mt-6 text-center text-base italic leading-7 text-black/55">
+            No necesitas experiencia previa, solo disposicion para practicar.
+          </p>
+        </div>
+      </div>
+
+      <p class="mt-8 max-w-lg text-base italic leading-8 text-black/80">
+        Aqui llega tanto quien quiere perfeccionar su comunicacion, como quien lleva anos evitando hablar... y decidio que ya no.
+      </p>
+    </div>
+
+    <Image
+      src={banner}
+      alt="Comunidad de alumnos ECO"
+      class="mx-auto aspect-[4/3] w-full max-w-[620px] rounded-xl object-cover object-center lg:aspect-[5/6] lg:max-w-[560px]"
+    />
+  </div>
+</section>

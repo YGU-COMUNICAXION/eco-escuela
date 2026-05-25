@@ -1,0 +1,50 @@
+---
+import { Image } from "astro:assets";
+import quoteIcon from "@assets/svgs/comillas.svg";
+
+const testimonials = [
+  {
+    quote:
+      "El curso te provee las herramientas necesarias para tomar conciencia de como te comunicas y que puedes mejorar. Es un espacio donde se genera confianza para practicar.",
+    name: "Fanny Goldstein",
+    role: "Sr. Director, PepsiCo",
+  },
+  {
+    quote:
+      "Este curso me saco de mi zona de confort y me impulso hacia una version mas audaz de mi misma. Me dio herramientas para ganar confianza, fluidez y control corporal.",
+    name: "Itzel Orduna",
+    role: "Abogada, SAT",
+  },
+  {
+    quote:
+      "En verdad un curso lleno de aprendizajes. Al terminar, me senti mucho mas seguro de mi mismo y logre identificar puntos de oportunidad para una comunicacion mas asertiva.",
+    name: "Rodrigo Aviles",
+    role: "Estudiante, Tec de Monterrey",
+  },
+];
+---
+
+<section id="testimonios" class="bg-[#f2f2f2] pb-20 pt-8 lg:pb-24">
+  <div class="container mx-auto px-6 lg:px-8">
+    <h2 class="text-center text-2xl font-black leading-tight text-black sm:text-3xl">
+      Lo que dicen quienes ya tomaron el curso
+    </h2>
+
+    <div class="mt-20 grid gap-x-7 gap-y-16 lg:grid-cols-3">
+      {
+        testimonials.map((testimonial) => (
+          <article class="relative min-h-[280px] rounded-xl bg-white px-8 pb-9 pt-20">
+            <Image
+              src={quoteIcon}
+              alt=""
+              class="absolute -top-8 left-8 h-20 w-20"
+            />
+            <p class="text-base italic leading-8 text-black/70">{testimonial.quote}</p>
+            <p class="mt-7 text-base font-black text-black">{testimonial.name}</p>
+            <p class="mt-4 text-sm text-black/50">{testimonial.role}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,65 @@
+---
+const programs = [
+  {
+    label: "Programa estrella",
+    title: "Curso intensivo de Oratoria y Comunicacion",
+    text: "Un entrenamiento practico para desarrollar tu voz, estructurar tus ideas y hablar frente a otros con seguridad. Grupos pequenos y retroalimentacion directa.",
+    button: "Conocer el curso",
+    tone: "primary",
+  },
+  {
+    label: "Empresas",
+    title: "Programas para empresas y organizaciones",
+    text: "Disenamos entrenamientos de comunicacion adaptados a las necesidades de cada equipo: presentaciones, liderazgo, manejo de crisis, voceria.",
+    button: "Solicitar informacion",
+    tone: "dark",
+  },
+  {
+    label: "Talleres",
+    title: "Talleres especializados",
+    text: "Storytelling y narrativa, comunicacion asertiva, marca personal, comunicacion en redes y medios. Independientes o complemento del curso base.",
+    button: "Ver talleres",
+    tone: "light",
+  },
+];
+---
+
+<section id="programas" class="eco-section bg-white">
+  <div class="container mx-auto px-6 lg:px-8">
+    <span class="text-xs font-black uppercase tracking-[0.12em] text-primary">Programas</span>
+    <h2 class="mt-4 text-3xl font-black leading-tight sm:text-4xl">
+      Nuestros programas<br /> de formacion
+    </h2>
+
+    <div class="mt-12 grid gap-6 lg:grid-cols-3">
+      {
+        programs.map((program) => (
+          <article
+            class:list={[
+              "flex min-h-[360px] flex-col rounded-2xl p-8 lg:min-h-[390px] lg:p-10",
+              program.tone === "primary" && "bg-primary text-black",
+              program.tone === "dark" && "bg-[#151515] text-white",
+              program.tone === "light" && "bg-[#f2f2f2] text-black",
+            ]}
+          >
+            <p class="text-xs font-black uppercase tracking-[0.12em] opacity-70">{program.label}</p>
+            <h3 class="mt-5 text-2xl font-black leading-tight">{program.title}</h3>
+            <p class="mt-6 text-base leading-7 opacity-75">{program.text}</p>
+            <button
+              type="button"
+              class:list={[
+                "mt-auto flex h-12 w-full items-center justify-between rounded-full border px-6 text-sm font-black",
+                program.tone === "dark"
+                  ? "border-white text-white"
+                  : "border-[#151515] text-[#151515]",
+              ]}
+            >
+              <span>{program.button}</span>
+              <span aria-hidden="true">-></span>
+            </button>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

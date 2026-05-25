@@ -1,0 +1,29 @@
+---
+import { Image } from "astro:assets";
+import logoAlt from "@assets/svgs/logo_alt.svg";
+
+const isHome = Astro.url.pathname === "/";
+const homeHref = isHome ? "#top" : "/";
+const sectionHref = (id: string) => (isHome ? `#${id}` : `/#${id}`);
+---
+
+<footer class="bg-[#101010] py-12 text-white lg:py-14">
+  <div class="container mx-auto px-6 lg:px-8">
+    <div class="flex flex-col gap-8 border-b border-white/15 pb-9 md:flex-row md:items-center md:justify-between">
+      <a href={homeHref} aria-label="Ir al inicio">
+        <Image src={logoAlt} alt="ECO" class="h-8 w-auto" />
+      </a>
+      <nav class="flex flex-wrap gap-x-7 gap-y-3 text-sm font-normal text-white/55 lg:gap-x-9 lg:text-base">
+        <a href={homeHref}>Inicio</a>
+        <a href={sectionHref("que-es-eco")}>Curso</a>
+        <a href={sectionHref("programas")}>Programas</a>
+        <a href={sectionHref("empresas")}>Empresa</a>
+        <a href={sectionHref("contacto")}>Contactos</a>
+      </nav>
+    </div>
+    <div class="flex flex-col gap-4 pt-8 text-sm text-white/35 md:flex-row md:items-center md:justify-between">
+      <p>Copyright 2026 ECO - Escuela de Comunicacion y Oratoria. Todos los derechos reservados.</p>
+      <p>CDMX, Mexico</p>
+    </div>
+  </div>
+</footer>

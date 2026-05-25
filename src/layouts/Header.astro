@@ -2,22 +2,29 @@
 import { Image } from "astro:assets";
 
 import imgLogo from "@assets/svgs/logo.svg";
+
+const isHome = Astro.url.pathname === "/";
+const homeHref = isHome ? "#top" : "/";
+const sectionHref = (id: string) => (isHome ? `#${id}` : `/#${id}`);
 ---
 
 <header
   id="header"
   data-scrolled="false"
   class:list={[
-    "group/header flex items-center justify-center",
-    "z-20 fixed w-full left-0 right-0 transition-colors duration-300",
-    "bg-white",
+    "group/header fixed left-0 right-0 z-20 flex items-center justify-center",
+    "border-b border-black/5 bg-[#F5F5F5] transition-colors duration-300",
   ]}
 >
-  <div
-    class="container relative flex items-center justify-between gap-4
-    px-4 md:py-0 lg:py-8 md:px-0"
-  >
-    <div class="lg:hidden absolute">
+  <div class="container relative mx-auto flex h-16 items-center justify-center px-6 lg:h-20 lg:justify-between lg:px-8">
+    <button
+      id="menu-toggle"
+      class="absolute left-6 inline-flex size-10 items-center justify-center lg:hidden"
+      type="button"
+      aria-label="Abrir menu"
+      aria-expanded="false"
+      aria-controls="navigator-menu"
+    >
       <!-- Bars3Icon -->
       <svg
         id="menu-icon"
@@ -27,7 +34,7 @@ import imgLogo from "@assets/svgs/logo.svg";
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
-        class={`size-8 lg:hidden transition-colors duration-300`}
+        class="size-7 transition-colors duration-300"
       >
         <path
           stroke-linecap="round"
@@ -36,67 +43,67 @@ import imgLogo from "@assets/svgs/logo.svg";
       </svg>
       <!-- XMarkIcon -->
       <svg
+        id="close-icon"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
-        class="size-6"
+        class="hidden size-7"
       >
         <path
           stroke-linecap="round"
           stroke-linejoin="round"
           d="M6 18 18 6M6 6l12 12"></path>
       </svg>
-    </div>
+    </button>
 
     <div
-      class="w-full lg:w-auto flex items-center justify-center lg:justify-start"
+      class="flex w-full items-center justify-center lg:w-auto lg:justify-start"
     >
       <a
-        href={"/"}
+        href={homeHref}
         data-i18n-path="/"
         data-header-brand
         class={`flex items-center transition-colors duration-300`}
       >
-        <Image class="h-10 lg:h-12 w-auto" src={imgLogo} alt={"logo"} />
+        <Image class="h-8 w-auto lg:h-9" src={imgLogo} alt={"ECO"} />
       </a>
     </div>
 
     <nav
       id="navigator-menu"
       class:list={[
-        "bg-white fixed -top-full left-0 right-0 lg:top-0 lg:left-auto lg:right-auto",
-        "flex flex-col items-center justify-center shadow lg:shadow-none p-6 py-8 lg:p-0 lg:py-0",
-        "transition-[top] duration-300 ease-in-out lg:transition-none",
-        "lg:static lg:flex-1 lg:flex lg:items-center lg:gap-4 lg:pt-1 lg:bg-transparent",
+        "absolute left-0 right-0 top-full hidden bg-[#F5F5F5] lg:static lg:flex lg:bg-transparent",
+        "border-b border-black/5 px-6 py-7 shadow lg:border-0 lg:p-0 lg:shadow-none",
+        "justify-center lg:flex-1 lg:items-center lg:justify-end",
       ]}
     >
       <ul
         data-header-nav
-        class={`h-full container
-        flex flex-col lg:flex-row items-center justify-end gap-8 lg:gap-14
+        class={`h-full
+        mx-auto flex w-full flex-col items-center justify-center gap-5 text-center lg:w-auto lg:flex-row lg:items-center lg:justify-end lg:gap-7 lg:text-right
         lg:[&>li]:text-center
         [&>li>a]:relative [&>li>a]:uppercase [&>li]:inline-block
         [&>li>a]:hover:underline [&>li>a]:transition-colors [&>li>a]:duration-300
         [&>li>a]:ease-in-out
-        font-normal text-base lg:text-lg xl:text-xl transition-colors duration-300
+        font-normal text-sm transition-colors duration-300 lg:text-base
       `}
       >
         <li>
-          <a href={"/"}> Inicio </a>
+          <a href={homeHref}> Inicio </a>
         </li>
         <li>
-          <a href={"/quienes-somos"}> Quienes somos </a>
+          <a href={sectionHref("que-es-eco")}> Curso de oratoria </a>
         </li>
         <li>
-          <a href={"/proyectos"}> Proyectos </a>
+          <a href={sectionHref("programas")}> Programas </a>
         </li>
         <li>
-          <a href={"/inversionistas"}> Inversionistas </a>
+          <a href={sectionHref("empresas")}> Empresa </a>
         </li>
         <li>
-          <a href={"/contacto"}> Contacto </a>
+          <a href={sectionHref("contacto")}> Contactos </a>
         </li>
       </ul>
     </nav>
@@ -118,28 +125,34 @@ import imgLogo from "@assets/svgs/logo.svg";
 
 <script>
   document.addEventListener("astro:page-load", () => {
-    const barsIcon = document.querySelector("#menu-icon");
-    const closeIcon = document.querySelector("#close-icon");
-    const navigatorMenu = document.querySelector("#navigator-menu");
+    const menuToggle = document.querySelector<HTMLButtonElement>("#menu-toggle");
+    const barsIcon = document.querySelector<SVGElement>("#menu-icon");
+    const closeIcon = document.querySelector<SVGElement>("#close-icon");
+    const navigatorMenu = document.querySelector<HTMLElement>("#navigator-menu");
     const header = document.querySelector<HTMLElement>("#header");
 
-    if (!navigatorMenu || !barsIcon || !closeIcon || !header) {
+    if (!navigatorMenu || !barsIcon || !closeIcon || !header || !menuToggle) {
       throw new Error("Element not found");
     }
 
     const setMenuOpen = (open: boolean | undefined) => {
-      // Toggle iconos
       barsIcon.classList.toggle("hidden", open);
       closeIcon.classList.toggle("hidden", !open);
-
-      // Mover el nav (tu clase para desplegar)
-      navigatorMenu.classList.toggle("top-16", open);
-
-      // Marcar estado en header
+      navigatorMenu.classList.toggle("hidden", !open);
+      navigatorMenu.classList.toggle("flex", open);
       header.setAttribute("data-menu-open", open ? "true" : "false");
+      menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
     };
 
-    barsIcon.addEventListener("click", () => setMenuOpen(true));
-    closeIcon.addEventListener("click", () => setMenuOpen(false));
+    setMenuOpen(false);
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = header.getAttribute("data-menu-open") === "true";
+      setMenuOpen(!isOpen);
+    });
+
+    navigatorMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setMenuOpen(false));
+    });
   });
 </script>

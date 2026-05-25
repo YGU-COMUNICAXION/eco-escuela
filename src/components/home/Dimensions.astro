@@ -1,0 +1,83 @@
+---
+import { Image } from "astro:assets";
+import dimensionsDiagram from "@assets/svgs/los7Pilares.svg";
+import centralDiagram from "@assets/imgs/diagramacentral.png";
+
+const dimensions = [
+  {
+    number: "1",
+    title: "Confianza",
+    text: "Superar el miedo y aprender a sostenerse con claridad y calma.",
+  },
+  {
+    number: "2",
+    title: "Presencia",
+    text: "Postura, respiracion, movimiento. El cuerpo comunica primero.",
+  },
+  {
+    number: "3",
+    title: "Voz",
+    text: "Ritmo, pausas, volumen y proyeccion. El vehiculo del mensaje.",
+  },
+  {
+    number: "4",
+    title: "Mensaje",
+    text: "Estructura de ideas, discursos, aperturas y cierres poderosos.",
+  },
+  {
+    number: "5",
+    title: "Asertividad",
+    text: "Expresar ideas y limites sin pasividad ni agresividad.",
+  },
+  {
+    number: "6",
+    title: "Narrativa",
+    text: "Historias que conectan emocionalmente y se recuerdan.",
+  },
+  {
+    number: "7",
+    title: "Imagen",
+    text: "Tu presencia y forma de comunicar construyen tu marca.",
+  },
+];
+---
+
+<section class="overflow-hidden bg-[#F5F5F5]">
+  <div class="container mx-auto px-6 py-16 text-center lg:hidden">
+    <span class="text-xs font-black uppercase tracking-[0.35em] text-primary">Metodo ECO</span>
+    <h2 class="mx-auto mt-4 max-w-lg text-4xl font-black italic leading-tight">
+      Las 7 dimensiones del comunicador
+    </h2>
+    <p class="mx-auto mt-5 max-w-xl text-base leading-8 text-black/60">
+      La comunicacion no es una sola habilidad. Es la integracion de multiples dimensiones que trabajan juntas cuando te expresas frente a otros.
+    </p>
+
+    <Image
+      src={centralDiagram}
+      alt="El comunicador al centro del metodo ECO"
+      class="mx-auto mt-8 w-full max-w-[320px]"
+      loading="lazy"
+    />
+
+    <div class="mt-8 grid gap-4">
+      {
+        dimensions.map((dimension) => (
+          <article class="rounded-2xl border border-black/10 bg-white/85 px-6 py-5 text-left shadow-sm">
+            <p class="text-3xl font-black leading-none text-primary">{dimension.number}</p>
+            <h3 class="mt-2 text-xl font-black text-black">{dimension.title}</h3>
+            <p class="mt-2 text-sm leading-6 text-black/60">{dimension.text}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="mx-auto hidden justify-center px-0 lg:flex">
+    <Image
+      src={dimensionsDiagram}
+      alt="Diagrama de las 7 dimensiones del comunicador: confianza, presencia, voz, mensaje, asertividad, narrativa e imagen."
+      class="block w-[104vw] max-w-[1680px] xl:w-full"
+      loading="lazy"
+    />
+  </div>
+</section>

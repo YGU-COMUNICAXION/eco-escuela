@@ -1,0 +1,67 @@
+---
+import { Image } from "astro:assets";
+import logo1 from "@assets/imgs/empresas/image 3.png";
+import logo2 from "@assets/imgs/empresas/image 4.png";
+import logo3 from "@assets/imgs/empresas/image 5.png";
+import logo4 from "@assets/imgs/empresas/image 6.png";
+import logo5 from "@assets/imgs/empresas/image 7.png";
+import logo6 from "@assets/imgs/empresas/image 8.png";
+import logo7 from "@assets/imgs/empresas/image 9.png";
+import logo8 from "@assets/imgs/empresas/image 10.png";
+import logo9 from "@assets/imgs/empresas/image 11.png";
+import logo10 from "@assets/imgs/empresas/image 12.png";
+
+const logos = [logo1, logo2, logo3, logo4, logo5, logo6, logo7, logo8, logo9, logo10];
+const carouselLogos = [...logos, ...logos];
+---
+
+<section id="empresas" class="overflow-hidden bg-[#f2f2f2] py-16 lg:py-20">
+  <div class="container mx-auto px-6 text-center lg:px-8">
+    <span class="text-xs font-black uppercase tracking-[0.35em] text-primary">Donde ya se escucha ECO</span>
+    <h2 class="mx-auto mt-5 max-w-3xl text-3xl font-black leading-tight sm:text-4xl">
+      Empresas, instituciones y personas a las que nuestra voz ha llegado
+    </h2>
+  </div>
+
+  <div class="relative mt-12">
+    <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-[#f2f2f2] to-transparent"></div>
+    <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-[#f2f2f2] to-transparent"></div>
+
+    <div class="companies-track flex w-max items-center gap-12">
+      {
+        carouselLogos.map((logo, index) => (
+          <div class="flex h-20 w-40 shrink-0 items-center justify-center">
+            <Image
+              src={logo}
+              alt={`Logo de organizacion ${index + 1}`}
+              class="max-h-14 w-auto max-w-[150px] object-contain"
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .companies-track {
+    animation: companies-scroll 28s linear infinite;
+  }
+
+  @keyframes companies-scroll {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .companies-track {
+      animation: none;
+      transform: none;
+    }
+  }
+</style>

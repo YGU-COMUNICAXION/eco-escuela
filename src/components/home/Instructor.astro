@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+import yair from "@assets/imgs/yair.png";
+---
+
+<section class="relative overflow-visible bg-[#f4f1eb]">
+  <div class="container mx-auto grid items-start gap-10 px-6 pt-16 lg:grid-cols-[1.08fr_0.92fr] lg:gap-0 lg:px-8 lg:pt-20">
+    <div class="pb-12 lg:pb-24">
+      <span class="text-xs font-black uppercase tracking-[0.35em] text-primary">Una nota personal</span>
+      <h2 class="mt-5 max-w-2xl text-3xl font-normal italic leading-tight sm:text-4xl">
+        Ya sabes el que y el como...<br />
+        dejame presentarte el <span class="underline decoration-primary decoration-4 underline-offset-4">quien.</span>
+      </h2>
+      <div class="mt-7 max-w-3xl space-y-5 text-base leading-8 text-black/70">
+        <p>
+          Desde que tengo memoria he tenido una obsesion a la que tarde en ponerle nombre: los humanos, su desarrollo y, sobre todo, la forma en la que nos comunicamos.
+        </p>
+        <p>
+          Mi nombre es Yair Unikel, y esa obsesion me ha llevado por distintos caminos, todos con un mismo hilo conductor: la comunicacion humana.
+        </p>
+        <p>
+          Forme parte del equipo nacional de debate en Mexico. Di clases privadas desde los 16 anos, en bachillerato desde los 19 y en universidad a los 21. He participado en teatro como actor y productor. Estudie mercadotecnia, me certifique en coaching ontologico, hice una maestria en imagen publica y actualmente estudio psicologia.
+        </p>
+        <p>
+          Durante mas de una decada he tenido el privilegio de trabajar con empresas, universidades, organizaciones y personas de todo tipo, acompanandolas en ese proceso.
+        </p>
+        <p>
+          ECO nace como una sintesis de ese recorrido. Un espacio donde la comunicacion no se estudia solo desde la teoria, sino desde la practica.
+        </p>
+      </div>
+      <p class="mt-6 max-w-xl text-base font-bold italic leading-8 text-black/80">
+        Si estas aqui, probablemente hay algo en tu forma de comunicar que te gustaria desarrollar. Si ese es el caso, sera un gusto encontrarnos.
+      </p>
+      <p class="mt-7 text-sm font-black leading-6">
+        Yair Unikel<br />
+        <span class="font-bold text-black/80">Director - ECO Escuela de Comunicacion y Oratoria</span>
+      </p>
+    </div>
+
+    <div class="relative min-h-[620px] self-stretch lg:min-h-[860px]">
+      <Image
+        src={yair}
+        alt="Yair Unikel, director de ECO"
+        class="absolute bottom-0 left-1/2 w-full max-w-[660px] -translate-x-1/2 object-contain object-bottom lg:-top-20 lg:bottom-auto"
+      />
+    </div>
+  </div>
+</section>

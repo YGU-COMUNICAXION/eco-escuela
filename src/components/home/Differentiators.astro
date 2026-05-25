@@ -1,0 +1,70 @@
+---
+import { Image } from "astro:assets";
+import brainIcon from "@assets/svgs/brainIcon.svg";
+import meditationIcon from "@assets/svgs/meditationIcon.svg";
+import groupIcon from "@assets/svgs/groupIcon.png";
+import logoAlt from "@assets/svgs/logo_alt.svg";
+
+const items = [
+  {
+    title: "Claridad mental",
+    text: "Para estructurar ideas y mensajes que realmente se entiendan.",
+    icon: brainIcon,
+  },
+  {
+    title: "Presencia corporal",
+    text: "Para sostener la atencion y comunicar con naturalidad.",
+    icon: meditationIcon,
+  },
+  {
+    title: "Contacto humano",
+    text: "Para hablar con autenticidad y generar conexion real.",
+    icon: groupIcon,
+  },
+];
+---
+
+<section id="que-es-eco" class="bg-[#151515] text-white">
+  <div class="container mx-auto px-6 py-16 lg:px-8 lg:py-20">
+    <div class="max-w-6xl">
+      <div class="flex items-center gap-2 text-xs font-black uppercase tracking-[0.35em] text-primary">
+        <span>Que es</span>
+        <Image src={logoAlt} alt="ECO" class="h-5 w-auto" />
+      </div>
+      <h2 class="mt-4 text-3xl font-black leading-tight text-primary sm:text-4xl">
+        Una escuela de comunicacion y oratoria basada en practica real.
+      </h2>
+      <p class="mt-7 max-w-6xl text-lg leading-9 text-white/85">
+        Aqui no entrenamos unicamente lo que dices, sino como lo sostienes: tu presencia, tu voz, tu claridad y tu capacidad de entrar en contacto con otras personas.
+      </p>
+    </div>
+
+    <div class="mt-8 grid gap-6 md:grid-cols-3">
+      {
+        items.map((item) => (
+          <article class="flex min-h-[215px] flex-col items-center justify-center rounded-xl border border-white/15 bg-white/[0.015] p-8 text-center">
+            <Image src={item.icon} alt="" class="h-12 w-12 object-contain" />
+            <h3 class="mt-6 text-2xl font-black">{item.title}</h3>
+            <p class="mt-4 max-w-xs text-base leading-7 text-white/80">{item.text}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <p class="mt-9 max-w-5xl text-xl italic leading-9 text-white/90">
+      "Nuestro objetivo no es crear grandes oradores, es ayudarte a encontrar tu forma natural de comunicar. Y cuando eso pasa, hablar bien deja de ser un esfuerzo... se vuelve una consecuencia."
+    </p>
+  </div>
+
+  <svg
+    class="block h-24 w-full lg:h-32"
+    viewBox="0 0 1440 150"
+    preserveAspectRatio="none"
+    aria-hidden="true"
+  >
+    <path
+      fill="#f7f7f5"
+      d="M0,105 C90,112 145,85 220,45 C310,-4 385,132 530,58 C625,10 680,132 805,60 C910,0 965,118 1090,68 C1200,24 1250,118 1365,104 C1395,101 1420,96 1440,88 L1440,150 L0,150 Z"
+    ></path>
+  </svg>
+</section>
