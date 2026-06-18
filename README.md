@@ -1,46 +1,30 @@
-# Astro Starter Kit: Basics
+# Eco Escuela
 
-```sh
-npm create astro@latest -- --template basics
-```
+## Link del proyecto publicado
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Pendiente de confirmar.
 
-## 🚀 Project Structure
+## Descripcion
 
-Inside of your Astro project, you'll see the following folders and files:
+Sitio web para Eco Escuela, enfocado en presentar una propuesta educativa con conciencia ambiental. El proyecto organiza contenido institucional, secciones informativas y llamados a la accion.
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+## Tecnologias usadas
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+- Astro
+- Tailwind CSS
 
-## 🧞 Commands
+## Requisitos
 
-All commands are run from the root of the project, from a terminal:
+- Node.js 22.12+
+- npm
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Retos tecnicos
 
-## 👀 Want to learn more?
+- Estructurar una narrativa clara para un proyecto educativo.
+- Crear secciones informativas reutilizables y responsive.
+- Mantener una experiencia visual ligera para carga rapida.
+- Preparar el sitio para despliegue estatico.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Creditos
+
+Desarrollado por Jonathan Alexis Bello Lopez.
