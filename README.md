@@ -2,7 +2,7 @@
 
 ## Link del proyecto publicado
 
-Pendiente de confirmar.
+https://eco-ygu.netlify.app/
 
 ## Descripcion
 
