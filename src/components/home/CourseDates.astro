@@ -1,0 +1,86 @@
+---
+const groups = [
+  { number: "01", days: "26 — 27", month: "septiembre", message: "26 y 27 de septiembre" },
+  { number: "02", days: "03 — 04", month: "octubre", message: "3 y 4 de octubre" },
+  { number: "03", days: "10 — 11", month: "octubre", message: "10 y 11 de octubre" },
+];
+const whatsapp = (dates: string) =>
+  `https://wa.me/525530281898?text=${encodeURIComponent(`Hola, me interesa el curso Domina la oratoria del ${dates}. ¿Me comparten información y disponibilidad?`)}`;
+const topics = [
+  "Presencia y lenguaje corporal",
+  "Regulación y confianza",
+  "Claridad y construcción del mensaje",
+  "Comunicación asertiva en contextos reales",
+  "Retroalimentación uno a uno",
+];
+---
+
+<section id="fechas" aria-labelledby="fechas-title" class="eco-section relative overflow-hidden bg-[#151515] text-white">
+  <div class="container relative mx-auto px-6 lg:px-8">
+    <div class="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+      <div>
+        <span class="text-xs font-black uppercase tracking-[0.16em] text-primary">Curso intensivo · CDMX</span>
+        <h2 id="fechas-title" class="mt-4 text-4xl font-black leading-[1.05] sm:text-5xl lg:text-6xl">
+          Domina la oratoria.<br /><span class="text-primary">Elige tu fecha.</span>
+        </h2>
+      </div>
+      <div class="max-w-sm lg:pb-1">
+        <p class="text-lg leading-7 text-white/75">Dos días para comunicar con más presencia, asertividad y confianza.</p>
+        <p class="mt-4 text-sm text-white/60">Impartido por <strong class="font-bold text-white">Yair Gittler</strong></p>
+      </div>
+    </div>
+
+    <div class="mt-10 grid gap-5 lg:mt-12 lg:grid-cols-3">
+      {groups.map((group) => (
+        <article class="date-card rounded-2xl bg-[#f7f7f5] p-6 text-[#151515] sm:p-8">
+          <div class="flex items-center justify-between border-b border-black/15 pb-5">
+            <h3 class="text-xs font-black uppercase tracking-[0.14em]">Grupo {group.number}</h3>
+            <span class="rounded-full border border-black/15 px-3 py-1 text-xs font-bold">CDMX</span>
+          </div>
+          <p class="mt-7 text-[clamp(2.75rem,4.5vw,4.5rem)] font-black leading-none tracking-[-0.055em]">{group.days}</p>
+          <p class="mt-2 text-2xl font-bold">{group.month}</p>
+          <div class="mt-6 flex items-start gap-3 text-sm leading-6">
+            <svg class="mt-1 h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" />
+            </svg>
+            <p>Sábado y domingo<br /><strong>10:30 a. m. – 6:00 p. m.</strong></p>
+          </div>
+          <a class="eco-button eco-button-primary mt-7 w-full justify-between px-6 text-sm" href={whatsapp(group.message)} target="_blank" rel="noopener noreferrer" aria-label={`Consultar por WhatsApp el grupo ${group.number}: ${group.message}`}>
+            Me interesa esta fecha <span aria-hidden="true">↗</span>
+          </a>
+        </article>
+      ))}
+    </div>
+
+    <div class="mt-6 grid overflow-hidden rounded-2xl border border-white/20 lg:grid-cols-[0.85fr_1.15fr]">
+      <div class="bg-primary p-6 text-[#151515] sm:p-8 lg:p-10">
+        <p class="text-xs font-black uppercase tracking-[0.14em]">Tu lugar en el intensivo</p>
+        <p class="mt-4 flex flex-wrap items-baseline gap-x-3"><span class="text-5xl font-black tracking-tight">$5,900</span><span class="text-sm font-black">MXN</span></p>
+        <p class="mt-4 text-sm leading-6">Incluye ambos días, comida, bebida y snacks.</p>
+        <div class="mt-6 border-t border-black/20 pt-5 text-sm leading-6">
+          <p class="font-black">Cupo limitado a 8 personas por grupo.</p>
+          <p>Presencial + 1 lugar en línea por grupo.</p>
+        </div>
+      </div>
+      <div class="p-6 sm:p-8 lg:p-10">
+        <h3 class="text-2xl font-black">Práctica real. Sin fórmulas ni personajes.</h3>
+        <p class="mt-3 max-w-xl text-sm leading-6 text-white/70">Encuentra comodidad, claridad y confianza al expresarte a tu manera. Durante el curso trabajaremos:</p>
+        <ul class="mt-5 grid gap-x-6 gap-y-3 sm:grid-cols-2">
+          {topics.map((topic) => (
+            <li class="flex items-start gap-3 text-sm leading-6"><span class="text-primary" aria-hidden="true">↗</span>{topic}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #fechas { scroll-margin-top: 6rem; }
+  #fechas a:focus-visible { outline: 3px solid #151515; outline-offset: 4px; }
+  .date-card { border-top: 4px solid var(--color-primary); }
+  @media (prefers-reduced-motion: reduce) {
+    #fechas a { transition: none; }
+    #fechas a:hover { transform: none; }
+  }
+</style>
