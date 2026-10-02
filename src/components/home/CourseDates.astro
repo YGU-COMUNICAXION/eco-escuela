@@ -1,8 +1,11 @@
 ---
 const groups = [
-  { number: "01", days: "26 — 27", month: "septiembre", message: "26 y 27 de septiembre" },
-  { number: "02", days: "03 — 04", month: "octubre", message: "3 y 4 de octubre" },
-  { number: "03", days: "10 — 11", month: "octubre", message: "10 y 11 de octubre" },
+  { number: "01", days: "26 — 27", month: "septiembre", message: "26 y 27 de septiembre", full: true, online: false, extra: "" },
+  { number: "02", days: "03 — 04", month: "octubre", message: "3 y 4 de octubre", full: true, online: false, extra: "" },
+  { number: "03", days: "10 — 11", month: "octubre", message: "10 y 11 de octubre", full: true, online: false, extra: "" },
+  { number: "04", days: "08 — 09", month: "octubre", message: "8 y 9 de octubre", full: true, online: false, extra: "" },
+  { number: "05", days: "16, 23 y 30", month: "octubre", message: "16, 23 y 30 de octubre (en línea)", full: false, online: true, extra: "Tres sesiones en línea" },
+  { number: "06", days: "17 y 24", month: "octubre", message: "17 y 24 de octubre y domingo 1 de noviembre (en línea)", full: false, online: true, extra: "+ domingo 1 de noviembre" },
 ];
 const whatsapp = (dates: string) =>
   `https://wa.me/525530281898?text=${encodeURIComponent(`Hola, me interesa el curso Domina la oratoria del ${dates}. ¿Me comparten información y disponibilidad?`)}`;
@@ -19,47 +22,45 @@ const topics = [
   <div class="container relative mx-auto px-6 lg:px-8">
     <div class="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
       <div>
-        <span class="text-xs font-black uppercase tracking-[0.16em] text-primary">Curso intensivo · CDMX</span>
+        <span class="text-xs font-black uppercase tracking-[0.16em] text-primary">Curso intensivo · CDMX y en línea</span>
         <h2 id="fechas-title" class="mt-4 text-4xl font-black leading-[1.05] sm:text-5xl lg:text-6xl">
           Domina la oratoria.<br /><span class="text-primary">Elige tu fecha.</span>
         </h2>
       </div>
       <div class="max-w-sm lg:pb-1">
-        <p class="text-lg leading-7 text-white/75">Dos días para comunicar con más presencia, asertividad y confianza.</p>
+        <p class="text-lg leading-7 text-white/75">Comunica con más presencia, asertividad y confianza. Conoce las nuevas fechas en línea.</p>
         <p class="mt-4 text-sm text-white/60">Impartido por <strong class="font-bold text-white">Yair Gittler</strong></p>
       </div>
     </div>
 
     <div class="mt-10 grid gap-5 lg:mt-12 lg:grid-cols-3">
       {groups.map((group) => (
-        <article class="date-card rounded-2xl bg-[#f7f7f5] p-6 text-[#151515] sm:p-8">
+        <article class:list={["date-card flex flex-col rounded-2xl bg-[#f7f7f5] p-6 text-[#151515] sm:p-8", { "date-card-full": group.full }]}>
           <div class="flex items-center justify-between border-b border-black/15 pb-5">
             <h3 class="text-xs font-black uppercase tracking-[0.14em]">Grupo {group.number}</h3>
-            <span class="rounded-full border border-black/15 px-3 py-1 text-xs font-bold">CDMX</span>
+            <span class="rounded-full border border-black/15 px-3 py-1 text-xs font-bold">{group.online ? "En línea" : "CDMX"}</span>
           </div>
-          <p class="mt-7 text-[clamp(2.75rem,4.5vw,4.5rem)] font-black leading-none tracking-[-0.055em]">{group.days}</p>
+          <p class:list={["mt-7 font-black leading-none tracking-[-0.055em]", group.online ? "text-[clamp(2rem,3.2vw,3rem)]" : "text-[clamp(2.75rem,4.5vw,4.5rem)]"]}>{group.days}</p>
           <p class="mt-2 text-2xl font-bold">{group.month}</p>
-          <div class="mt-6 flex items-start gap-3 text-sm leading-6">
-            <svg class="mt-1 h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
-              <circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" />
-            </svg>
-            <p>Sábado y domingo<br /><strong>10:30 a. m. – 6:00 p. m.</strong></p>
+          <div class="mb-7 mt-5 text-sm leading-6">
+            {group.online ? <><p class="font-bold">{group.extra}</p><p>Consulta horarios e inversión por WhatsApp.</p></> : <p>Este grupo ya tiene el cupo completo.</p>}
           </div>
-          <a class="eco-button eco-button-primary mt-7 w-full justify-between px-6 text-sm" href={whatsapp(group.message)} target="_blank" rel="noopener noreferrer" aria-label={`Consultar por WhatsApp el grupo ${group.number}: ${group.message}`}>
+          {group.full ? <p class="mt-auto flex min-h-[3.25rem] items-center justify-center rounded-full bg-black/10 px-6 text-sm font-black uppercase tracking-widest">Lleno</p> : <a class="eco-button eco-button-primary mt-auto w-full justify-between px-6 text-sm" href={whatsapp(group.message)} target="_blank" rel="noopener noreferrer" aria-label={`Consultar por WhatsApp el grupo ${group.number}: ${group.message}`}>
             Me interesa esta fecha <span aria-hidden="true">↗</span>
-          </a>
+          </a>}
         </article>
       ))}
     </div>
 
     <div class="mt-6 grid overflow-hidden rounded-2xl border border-white/20 lg:grid-cols-[0.85fr_1.15fr]">
       <div class="bg-primary p-6 text-[#151515] sm:p-8 lg:p-10">
-        <p class="text-xs font-black uppercase tracking-[0.14em]">Tu lugar en el intensivo</p>
+        <p class="text-xs font-black uppercase tracking-[0.14em]">Intensivo presencial · CDMX</p>
         <p class="mt-4 flex flex-wrap items-baseline gap-x-3"><span class="text-5xl font-black tracking-tight">$5,900</span><span class="text-sm font-black">MXN</span></p>
         <p class="mt-4 text-sm leading-6">Incluye ambos días, comida, bebida y snacks.</p>
         <div class="mt-6 border-t border-black/20 pt-5 text-sm leading-6">
           <p class="font-black">Cupo limitado a 8 personas por grupo.</p>
           <p>Presencial + 1 lugar en línea por grupo.</p>
+          <p class="mt-3">Para los cursos de tres sesiones en línea, consulta horarios e inversión por WhatsApp.</p>
         </div>
       </div>
       <div class="p-6 sm:p-8 lg:p-10">
@@ -79,6 +80,7 @@ const topics = [
   #fechas { scroll-margin-top: 6rem; }
   #fechas a:focus-visible { outline: 3px solid #151515; outline-offset: 4px; }
   .date-card { border-top: 4px solid var(--color-primary); }
+  .date-card-full { border-top-color: #a3a3a3; }
   @media (prefers-reduced-motion: reduce) {
     #fechas a { transition: none; }
     #fechas a:hover { transform: none; }
