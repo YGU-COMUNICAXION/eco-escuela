@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import banner from "@assets/imgs/banner2.jpg";
+import graduates from "@assets/imgs/graduados-oratoria.png";
 ---
 
 <section id="curso" class="bg-white">
@@ -22,13 +23,45 @@ import banner from "@assets/imgs/banner2.jpg";
       </div>
     </div>
 
-    <div class="relative">
+    <div class="hero-photos relative overflow-hidden rounded-lg shadow-[0_18px_60px_rgba(0,0,0,0.16)]">
       <Image
         src={banner}
         alt="Alumnos de ECO sosteniendo reconocimientos"
-        class="aspect-[4/3] w-full rounded-lg object-cover shadow-[0_18px_60px_rgba(0,0,0,0.16)]"
+        class="block aspect-video w-full object-cover"
+        widths={[480, 768, 1200]}
+        sizes="(min-width: 1024px) 55vw, 100vw"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <Image
+        src={graduates}
+        alt="Alumnos de ECO con sus certificados del curso Dominando la oratoria"
+        class="hero-photo-next absolute inset-0 h-full w-full object-cover"
+        widths={[480, 768, 1200]}
+        sizes="(min-width: 1024px) 55vw, 100vw"
         loading="eager"
       />
     </div>
   </div>
 </section>
+
+<style>
+  .hero-photo-next {
+    opacity: 0;
+    animation: photo-fade 12s ease-in-out infinite;
+  }
+
+  /* Each photo stays visible for five seconds, with one-second crossfades. */
+  @keyframes photo-fade {
+    0%, 41.667%, 100% { opacity: 0; }
+    50%, 91.667% { opacity: 1; }
+  }
+
+  .hero-photos:hover .hero-photo-next {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-photo-next { animation: none; }
+  }
+</style>
