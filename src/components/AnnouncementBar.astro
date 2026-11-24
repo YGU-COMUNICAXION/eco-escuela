@@ -1,9 +1,10 @@
 ---
+import { courseCities } from "../data/courseSessions";
 const announcements = [
-  "Proximas fechas: 12 de mayo",
-  "Nuevo grupo: 15 de abril",
-  "Inscripciones abiertas",
-  "Curso intensivo de oratoria y comunicacion",
+  "Nuevas fechas: diciembre 2026 y enero 2027",
+  courseCities.map(({ city }) => city).join(" · "),
+  "Consulta fechas, horarios y disponibilidad",
+  "Curso Intensivo de Oratoria y Comunicación",
 ];
 
 const loopItems = [...announcements, ...announcements, ...announcements];
@@ -14,7 +15,7 @@ const loopItems = [...announcements, ...announcements, ...announcements];
     {
       loopItems.map((item) => (
         <div class="flex items-center gap-10 text-sm font-black uppercase tracking-[0.18em]">
-          <span>{item}</span>
+          <a href="/#fechas" class="hover:underline focus-visible:underline">{item}</a>
           <span aria-hidden="true" class="size-2 rounded-full bg-primary"></span>
         </div>
       ))
